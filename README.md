@@ -1,1 +1,1 @@
-# algorithms-and-design-patterns
+# Notes on algorithms and design patterns
