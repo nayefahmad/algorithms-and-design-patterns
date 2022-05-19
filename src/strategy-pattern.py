@@ -1,4 +1,4 @@
-# Strategy pattern in Python
+# # Strategy pattern in Python
 
 # ## References:
 
