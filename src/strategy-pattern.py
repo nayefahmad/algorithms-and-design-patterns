@@ -21,3 +21,33 @@
 
 # We will use a `Context` class, a `Strategy` interface, and several specific
 # implementations of the interface.
+
+
+# ### Libraries
+
+from abc import ABC, abstractmethod
+from typing import List
+
+
+class Strategy(ABC):
+    @abstractmethod
+    def do_algorithm(self, data: List) -> List:
+        pass
+
+
+class ConcreteStrategyA(Strategy):
+    def do_algorithm(self, data: List) -> List:
+        return reversed(sorted(data))
+
+
+class Context:
+    def __init__(self, strategy: Strategy):
+        self._strategy = strategy
+
+    def do_some_business_logic(self) -> List:
+        result = self._strategy.do_algorithm(["a", "b", "c"])
+        return result
+
+
+if __name__ == "__main__":
+    context = Context(ConcreteStrategyA)
