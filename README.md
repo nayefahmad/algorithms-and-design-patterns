@@ -12,3 +12,6 @@
 - `.flake8`: config for Flake8. Mainly used to specify max-line-length=88, to match [Black's default](https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html)
 - `requirements.txt`: python packages used 
 
+## Contents 
+1. [The Strategy pattern in Python](https://github.com/nayefahmad/algorithms-and-design-patterns/blob/main/src/strategy-pattern.ipynb)
+2. [Abstract Base Classes in Python](https://github.com/nayefahmad/algorithms-and-design-patterns/blob/main/src/abstract-base-class.ipynb)
