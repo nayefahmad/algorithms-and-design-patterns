@@ -61,8 +61,11 @@ class BaseClass(ABC):
         print(f"You called fit() on: {self}")
 
 
-b2 = BaseClass()  # BaseClass2 can't be instantiated
-b2.fit()
+try:
+    b2 = BaseClass()  # BaseClass2 can't be instantiated
+    b2.fit()
+except TypeError as e:
+    print(f"Failed! Error message: \nTypeError: {e}")
 
 
 class ChildClass(BaseClass):
@@ -72,8 +75,11 @@ class ChildClass(BaseClass):
 
 # ChildClass can't be instantiated because it failed to override the fit method of
 # parent ABC, BaseClass2
-c2 = ChildClass()  # error
-c2.fit()
+try:
+    c2 = ChildClass()  # error
+    c2.fit()
+except TypeError as e:
+    print(f"Failed! Error message: \nTypeError: {e}")
 
 
 # Finally, here's a child class that works as intended:
