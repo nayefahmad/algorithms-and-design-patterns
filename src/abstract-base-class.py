@@ -56,13 +56,13 @@ class BaseClass(ABC):
     def __init__(self):
         pass
 
-    @abstractmethod  # this is the only difference between BaseClassWithoutAbstractMethod and BaseClass2  # noqa
+    @abstractmethod  # this is the only difference between BaseClassWithoutAbstractMethod and BaseClass  # noqa
     def fit(self):
         print(f"You called fit() on: {self}")
 
 
 try:
-    b2 = BaseClass()  # BaseClass2 can't be instantiated
+    b2 = BaseClass()  # BaseClass can't be instantiated
     b2.fit()
 except TypeError as e:
     print(f"Failed! Error message: \nTypeError: {e}")
