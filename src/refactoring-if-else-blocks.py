@@ -4,7 +4,30 @@
 # - [Sunny Sun on Medium](https://betterprogramming.pub/4-simple-and-effective-ways-to-avoid-too-many-ifs-with-typescript-89937c0f9a99)  # noqa
 # - [Jan on Medium](https://janalmazora.medium.com/how-to-prevent-using-if-else-statements-in-your-code-7e05e43afde)  # noqa
 
-# ## Initial state:
+
+# ## Set up tests:
+def run_test_cases(function):
+    test_cases = {
+        1: ("200", None),
+        2: ("200", ""),
+        3: ("404", "error 200"),
+        4: ("404", None),
+    }
+
+    expected_outputs = {
+        1: "success",
+        2: "success",
+        3: "error 200",
+        4: "unexpected error",
+    }
+
+    for test_case in range(1, 5):
+        print(f"Running test case: {test_case} on function {function.__name__}")
+        assert function(*test_cases[test_case]) == expected_outputs[test_case]
+    print("All tests passed")
+
+
+# ## Initial state of function:
 
 # Notes:
 
@@ -23,24 +46,7 @@ def complex_if_else(response_status, response_error):
     return status
 
 
-test_cases = {
-    "1": ("200", None),
-    "2": ("200", ""),
-    "3": ("404", "error 200"),
-    "4": ("404", None),
-}
-
-expected_outputs = {
-    "1": "success",
-    "2": "success",
-    "3": "error 200",
-    "4": "unexpected error",
-}
-
-assert complex_if_else(*test_cases["1"]) == expected_outputs["1"]
-assert complex_if_else(*test_cases["2"]) == expected_outputs["2"]
-assert complex_if_else(*test_cases["3"]) == expected_outputs["3"]
-assert complex_if_else(*test_cases["4"]) == expected_outputs["4"]
+run_test_cases(complex_if_else)
 
 
 # ## Solution 1: Guard and early return
@@ -56,7 +62,4 @@ def guard(response_status, response_error):
     return status
 
 
-assert guard(*test_cases["1"]) == expected_outputs["1"]
-assert guard(*test_cases["2"]) == expected_outputs["2"]
-assert guard(*test_cases["3"]) == expected_outputs["3"]
-assert guard(*test_cases["4"]) == expected_outputs["4"]
+run_test_cases(guard)
