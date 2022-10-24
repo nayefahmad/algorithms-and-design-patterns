@@ -13,6 +13,6 @@
 - `requirements.txt`: python packages used 
 
 ## Contents 
-1. [The Strategy pattern in Python](https://github.com/nayefahmad/algorithms-and-design-patterns/blob/main/src/strategy-pattern.ipynb)
+1. [The QuackBehaviour pattern in Python](https://github.com/nayefahmad/algorithms-and-design-patterns/blob/main/src/strategy-pattern.ipynb)
 2. [Abstract Base Classes in Python](https://github.com/nayefahmad/algorithms-and-design-patterns/blob/main/src/abstract-base-class.ipynb)
 3. [Refactoring complex if-else blocks](https://github.com/nayefahmad/algorithms-and-design-patterns/blob/main/src/refactoring-if-else-blocks.ipynb)

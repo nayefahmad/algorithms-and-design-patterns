@@ -16,10 +16,20 @@
 # its work, other objects may replace the currently linked strategy object with another
 # one.
 
+# To make this more intuitive, the context is a `Duck` class. We want our ducks to
+# quack, but there are many different ways to quack. To allow for runtime changes in
+# quack behaviour, we make a `QuackBehaviour` interface and concrete classes for each
+# specific way to quack.
+
+# Notice that we don't have to change the `Duck` class in order to change the behaviour
+# of ducks. Thus we effectively separate parts of the program that change often
+# (quack behaviours) from parts that don't change often (the Duck itself). This is a
+# key principle behind most design patterns.
+
 
 # ## Classes used
 
-# We will use a `Context` class, a `Strategy` interface, and several specific
+# We will use a `Duck` class, a `QuackBehaviour` interface, and several specific
 # implementations of the interface.
 
 
@@ -29,25 +39,50 @@ from abc import ABC, abstractmethod
 from typing import List
 
 
-class Strategy(ABC):
+# Interface for behaviours
+
+
+class QuackBehaviour(ABC):
     @abstractmethod
     def do_algorithm(self, data: List) -> List:
         pass
 
 
-class ConcreteStrategyA(Strategy):
+# Specific behaviours
+
+
+class QuackNormal(QuackBehaviour):
     def do_algorithm(self, data: List) -> List:
-        return reversed(sorted(data))
+        return data
 
 
-class Context:
-    def __init__(self, strategy: Strategy):
-        self._strategy = strategy
+class QuackReversed(QuackBehaviour):
+    def do_algorithm(self, data: List) -> List:
+        return list(reversed(sorted(data)))
 
-    def do_some_business_logic(self) -> List:
-        result = self._strategy.do_algorithm(["a", "b", "c"])
+
+class QuackLastAndFirst(QuackBehaviour):
+    def do_algorithm(self, data: List) -> List:
+        return [data[-1]] + [data[0]]
+
+
+# Context class
+
+
+class Duck:
+    def __init__(self, strategy: QuackBehaviour = QuackNormal):
+        self._strategy = strategy()
+
+    def do_some_business_logic(self, data) -> List:
+        result = self._strategy.do_algorithm(data)
         return result
 
 
-if __name__ == "__main__":
-    context = Context(ConcreteStrategyA)
+# ## Demo
+data = [1, 2, 3, 4, 5]
+
+for duck_num, strategy in enumerate([QuackNormal, QuackLastAndFirst, QuackReversed]):
+    print(f"Duck {duck_num}, Strategy = {strategy}")
+    duck = Duck(strategy)
+    result = duck.do_some_business_logic(data)
+    print(f"result = {result}")
