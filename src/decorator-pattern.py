@@ -3,6 +3,7 @@
 # ## References:
 
 # - [Refactoring Guru article on Decorator pattern](https://refactoring.guru/design-patterns/strategy)  # noqa
+# - [The Composition Over Inheritance Principle](https://python-patterns.guide/gang-of-four/composition-over-inheritance/#dodge-if-statements)  # noqa
 
 # ## Summary of pattern
 
@@ -95,7 +96,7 @@ def client_code(component: Component) -> None:
 if __name__ == "__main__":
     # This way the client code can support both simple components...
     simple = ConcreteComponent()
-    print("Client: I've got a simple component:")
+    print("1. Client: I've got a simple component:")
     client_code(simple)
     print("\n")
 
@@ -105,5 +106,13 @@ if __name__ == "__main__":
     # decorators as well.
     decorator1 = ConcreteDecoratorA(simple)
     decorator2 = ConcreteDecoratorB(decorator1)
-    print("Client: Now I've got a decorated component:")
+    print("2. Client: Now I've got a decorated component:")
     client_code(decorator2)
+    decorator2.operation()
+    print("\n")
+
+    # reversing the order of operations:
+    wrapped01 = ConcreteDecoratorB(simple)
+    wrapped02 = ConcreteDecoratorA(wrapped01)
+    client_code(wrapped02)
+    wrapped02.operation()
