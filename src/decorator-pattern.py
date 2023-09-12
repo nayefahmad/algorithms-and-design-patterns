@@ -46,6 +46,40 @@ class Decorator(Component):
     def component(self) -> Component:
         """
         The Decorator delegates all work to the wrapped component.
+
+        Note: this is a pretty standard way to use the @property decorator. The
+        result of this use is that we can access `component` as an attribute (like
+        `a.component)` instead of like a function (like `a.component()). This can be
+        useful in combination with a "setter" decorator like this:
+
+        ```
+        @component.setter
+        def component(self, value):
+            # validate that value is acceptable
+            self._component = value
+        ```
+
+        With the setter implemented, we could dynamically catch invalid assignment.
+
+        Another reason to use @propery is for derived/computed attributes in
+        dataclasess, where those values
+        are computed based on other attributes. Example:
+
+        ```
+        class Rectangle:
+            def __init__(self, width, height):
+                self.width = width
+                self.height = height
+
+            @property
+            def area(self):
+                return self.width * self.height
+
+        # Usage:
+        rect = Rectangle(4, 5)
+        print(rect.area)  # Output: 20
+        ```
+
         """
 
         return self._component
