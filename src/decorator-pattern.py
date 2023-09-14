@@ -2,10 +2,14 @@
 
 # ## References:
 
-# - [Refactoring Guru article on Decorator pattern](https://refactoring.guru/design-patterns/strategy)  # noqa
+# - [Refactoring Guru article on Decorator pattern](https://refactoring.guru/design-patterns/decorator)  # noqa
 # - [The Composition Over Inheritance Principle](https://python-patterns.guide/gang-of-four/composition-over-inheritance/#dodge-if-statements)  # noqa
 
 # ## Summary of pattern
+
+# Decorator is a structural design pattern that lets you attach new behaviors to
+# objects by placing these objects inside special wrapper objects that contain the
+# behaviors.
 
 
 class Component:
@@ -47,7 +51,7 @@ class Decorator(Component):
         """
         The Decorator delegates all work to the wrapped component.
 
-        Note: this is a pretty standard way to use the @property decorator. The
+        Side note: this is a pretty standard way to use the @property decorator. The
         result of this use is that we can access `component` as an attribute (like
         `a.component)` instead of like a function (like `a.component()). This can be
         useful in combination with a "setter" decorator like this:
