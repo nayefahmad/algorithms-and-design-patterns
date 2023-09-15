@@ -139,12 +139,18 @@ if __name__ == "__main__":
     print("\n")
 
     # ...as well as decorated ones.
-    #
+
     # Note how decorators can wrap not only simple components but the other
     # decorators as well.
     decorator1 = ConcreteDecoratorA(simple)
-    decorator2 = ConcreteDecoratorB(decorator1)
     print("2. Client: Now I've got a decorated component:")
+    client_code(decorator1)
+    decorator1.operation()
+    print("\n")
+
+    # You can even nest decorators:
+    decorator2 = ConcreteDecoratorB(decorator1)
+    print("3. Client: Now I've got a doubly decorated component:")
     client_code(decorator2)
     decorator2.operation()
     print("\n")
@@ -152,5 +158,6 @@ if __name__ == "__main__":
     # reversing the order of operations:
     wrapped01 = ConcreteDecoratorB(simple)
     wrapped02 = ConcreteDecoratorA(wrapped01)
+    print("4. Client: Now I'll reverse the order of nesting the decorators:")
     client_code(wrapped02)
     wrapped02.operation()
