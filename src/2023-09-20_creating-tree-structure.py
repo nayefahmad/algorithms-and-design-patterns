@@ -14,6 +14,8 @@ We represent the levels of the bullet points using this list: [1, 2, 2, 3, 2]
 
 Goal: convert to a tree structure.
 
+Expected output: [1, [2], [2, [3]], [2]]
+
 """
 
 
@@ -29,9 +31,14 @@ def create_tree_structure(lst):
         # `val`
         current_nodes[val - 1].append(new_node)
 
+        # When we encounter a value in the input `lst`, the operation we perform
+        # depends on the depth level indicated by the value. The length of current_nodes
+        # represents the current depth of the tree.
         if len(current_nodes) > val:
+            # Add a node at the same level
             current_nodes[val:] = [new_node]
         else:
+            # Add a node at a deeper level
             current_nodes.append(new_node)
 
     return root[0]
