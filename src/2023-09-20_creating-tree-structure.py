@@ -16,11 +16,15 @@ Goal: convert to a tree structure.
 
 Expected output: [1, [2], [2, [3]], [2]]
 
+## References:
+- [Intro to trees](https://bradfieldcs.com/algos/trees/introduction/)
+- [Representing trees](https://bradfieldcs.com/algos/trees/representing-a-tree/)
+
 """
 
 
 def create_tree_structure(lst):
-    root = []
+    root = []  # note that root will change each time in the loop below
     current_nodes = [root]
 
     for val in lst:
