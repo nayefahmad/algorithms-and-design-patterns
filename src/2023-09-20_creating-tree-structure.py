@@ -86,5 +86,6 @@ new_node = [1]
 current_nodes = [[new_node], new_node]
 new_node = [2]
 assert current_nodes[0][0] is current_nodes[1]
+current_nodes
 current_nodes[0][0].append([9])
 current_nodes
