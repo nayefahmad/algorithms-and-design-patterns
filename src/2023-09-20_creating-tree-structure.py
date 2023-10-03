@@ -27,7 +27,7 @@ def create_tree_structure(lst):
     root = []  # note that root will change each time in the loop below
     current_nodes = [root]
 
-    for val in lst:
+    for idx, val in enumerate(lst):
         # For each value in the input list, create a new node
         new_node = [val]
         print(f"----new_node: {new_node}")
@@ -35,9 +35,19 @@ def create_tree_structure(lst):
         # Add the new node as a child of the current node at the level one less than
         # `val`
         print(f"current nodes: {current_nodes}")
-        current_nodes[val - 1].append(
-            new_node
-        )  # todo: investigate strange behaviour due to list mutability and references work  # noqa
+
+        if idx == 1:
+            assert current_nodes[0][0] is current_nodes[1]
+            # Possible explanation:
+            # In this case, current_nodes[0][0] and current_nodes[1] are both
+            # assigned the integer value 1. Python caches certain small integers
+            # because they are used frequently. So when you use an integer within
+            # that range, you're actually getting a reference to the same integer
+            # object. Hence, current_nodes[0][0] and y are pointing to the same memory
+            # location, and current_nodes[0][0] is current_nodes[1] returns True.
+
+        current_nodes[val - 1].append(new_node)
+
         print(f"current nodes: {current_nodes}")
 
         # When we encounter a value in the input `lst`, the operation we perform
@@ -58,8 +68,9 @@ def create_tree_structure(lst):
 # Usage
 input_list = [1, 2, 2, 3, 2]
 input_list_02 = [0, 1, 2, 3, 1, 2, 3, 3, 1]
+input_list_03 = [1, 1, 1]
 
-for input_list in [input_list, input_list_02]:
+for input_list in [input_list, input_list_02, input_list_03]:
     tree_structure = create_tree_structure(input_list)
     print(tree_structure)
 
@@ -69,3 +80,11 @@ y = [[x], x]
 assert y == [[[1]], [1]]
 y[1].append([2])
 assert y == [[[1, [2]]], [1, [2]]]
+
+
+new_node = [1]
+current_nodes = [[new_node], new_node]
+new_node = [2]
+assert current_nodes[0][0] is current_nodes[1]
+current_nodes[0][0].append([9])
+current_nodes
