@@ -75,13 +75,14 @@ for input_list in [input_list, input_list_02, input_list_03]:
     print(tree_structure)
 
 # todo: explain this. Is it a feature or bug in the algorithm?
+# Example 1
 x = [1]
 y = [[x], x]
 assert y == [[[1]], [1]]
 y[1].append([2])
 assert y == [[[1, [2]]], [1, [2]]]
 
-
+# Example 2
 new_node = [1]
 current_nodes = [[new_node], new_node]
 new_node = [2]
