@@ -49,8 +49,6 @@ class QuackBehaviour(ABC):
 
 
 # Specific behaviours
-
-
 class QuackNormal(QuackBehaviour):
     def do_algorithm(self, data: List) -> List:
         return data
@@ -67,8 +65,6 @@ class QuackLastAndFirst(QuackBehaviour):
 
 
 # Context class
-
-
 class Duck:
     def __init__(self, strategy: QuackBehaviour = QuackNormal):
         self._strategy = strategy()
