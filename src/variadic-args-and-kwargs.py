@@ -11,7 +11,12 @@ def fixed_args():
 
 
 def variadic_args(*args):
-    print(args)
+    print(f"*args: {args}")
+    print("done")
+
+
+def fixed_and_variadic_args(first, *args):
+    print(f"*args: {args}")
     print("done")
 
 
@@ -27,3 +32,10 @@ if __name__ == "__main__":
     # In both these cases, within the function, args are unpacked as tuple (1,2)
     variadic_args(1, 2)
     variadic_args(*[1, 2])
+
+    try:
+        fixed_and_variadic_args()
+    except TypeError as e:
+        print(f"{type(e).__name__}: {e}")
+    fixed_and_variadic_args(1)
+    fixed_and_variadic_args(1, 2, 3)
