@@ -54,8 +54,9 @@ if __name__ == "__main__":
     wrapper_function(1)
     wrapper_function(1, 2)
 
-    # correct way to pass variadic kwargs:
+    # Two options for correct way to pass variadic kwargs:
     wrapper_function(1, 2, third=3)
+    wrapper_function(1, 2, **{"third": 3})
 
-    # INCORRECT way to pass variadic kwargs:
+    # INCORRECT way to pass variadic kwargs - causes kwargs to be pulled into args:
     wrapper_function(1, 2, {"third": 3})
