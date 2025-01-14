@@ -22,7 +22,10 @@ class Solution:
         """
         Do not return anything, modify nums1 in-place instead.
         """
-        pass
+        nums1[m:] = []
+        nums1.extend(nums2)
+        nums1.sort()
+        return nums1
 
 
 def test_01() -> None:
@@ -31,7 +34,7 @@ def test_01() -> None:
     m = 3
     nums2 = [2, 5, 6]
     n = 3
-    s.merge(nums1, m, nums2, n)
+    nums1 = s.merge(nums1, m, nums2, n)
     assert nums1 == [1, 2, 2, 3, 5, 6]
 
 
@@ -41,7 +44,7 @@ def test_02() -> None:
     m = 4
     nums2 = [2, 5, 6]
     n = 3
-    s.merge(nums1, m, nums2, n)
+    nums1 = s.merge(nums1, m, nums2, n)
     assert nums1 == [0, 1, 2, 2, 3, 5, 6]
 
 
@@ -51,7 +54,7 @@ def test_03() -> None:
     m = 1
     nums2 = []
     n = 0
-    s.merge(nums1, m, nums2, n)
+    nums1 = s.merge(nums1, m, nums2, n)
     assert nums1 == [1]
 
 
@@ -61,10 +64,10 @@ def test_04() -> None:
     m = 0
     nums2 = [1]
     n = 1
-    s.merge(nums1, m, nums2, n)
+    nums1 = s.merge(nums1, m, nums2, n)
     assert nums1 == [1]
 
 
-if __name__ == '__main__':
-    print('done!')
-
+if __name__ == "__main__":
+    test_01()
+    print("done!")
