@@ -1,5 +1,5 @@
 """
-Merge Sorted Array
+# Merge Sorted Array
 
 Reference: leetcode problem 88
 
