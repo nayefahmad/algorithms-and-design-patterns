@@ -68,6 +68,5 @@ def test_02():
     assert nums[:5] == [0, 0, 1, 3, 4]
 
 
-if __name__ == '__main__':
-    print('done!')
-
+if __name__ == "__main__":
+    print("done!")
