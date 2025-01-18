@@ -39,13 +39,15 @@ from typing import List, Tuple
 
 class Solution:
     def removeElement(self, nums: List[int], val: int) -> Tuple[List, int]:
-        for idx in range(len(nums)):
-            try:
-                nums.remove(val)
-            except ValueError:
-                break
-
-        k = len(nums)
+        k = 0
+        for idx1 in range(len(nums)):
+            no_remove = True if nums[idx1] != val else False
+            if no_remove:
+                # note that k and idx1 will start differing once the if condition
+                # evaluates to False.
+                nums[k] = nums[idx1]
+                k += 1
+        nums[k:] = []
         nums.sort()
         return nums, k
 
@@ -69,4 +71,8 @@ def test_02():
 
 
 if __name__ == "__main__":
+    nums = [3, 2, 2, 3]
+    val = 3
+    s = Solution()
+    nums, k = s.removeElement(nums, val)
     print("done!")
