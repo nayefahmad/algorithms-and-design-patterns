@@ -39,17 +39,17 @@ from typing import List, Tuple
 
 class Solution:
     def removeElement(self, nums: List[int], val: int) -> Tuple[List, int]:
-        k = 0
+        number_removed = 0
         for idx1 in range(len(nums)):
             no_remove = True if nums[idx1] != val else False
             if no_remove:
                 # note that k and idx1 will start differing once the if condition
                 # evaluates to False.
-                nums[k] = nums[idx1]
-                k += 1
-        nums[k:] = []
+                nums[number_removed] = nums[idx1]
+                number_removed += 1
+        nums[number_removed:] = []
         nums.sort()
-        return nums, k
+        return nums, number_removed
 
 
 def test_01():
