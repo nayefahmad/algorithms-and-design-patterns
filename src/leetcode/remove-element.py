@@ -39,6 +39,15 @@ from typing import List, Tuple
 
 class Solution:
     def removeElement(self, nums: List[int], val: int) -> Tuple[List, int]:
+        """
+        This is an example of a two-pointer approach. The "pointers" are variables
+        that represent indices in the array. They often move in different ways - e.g.
+        one moves faster than the other (as in this solution), or one moves from a
+        different direction.
+
+        The approach is particularly useful for achieving O(n) runtime performance
+        where a nested for loop would otherwise be used. 
+        """
         number_removed = 0
         for idx1 in range(len(nums)):
             no_remove = True if nums[idx1] != val else False
