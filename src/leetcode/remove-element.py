@@ -46,7 +46,7 @@ class Solution:
         different direction.
 
         The approach is particularly useful for achieving O(n) runtime performance
-        where a nested for loop would otherwise be used. 
+        where a nested for loop would otherwise be used.
         """
         number_removed = 0
         for idx1 in range(len(nums)):
