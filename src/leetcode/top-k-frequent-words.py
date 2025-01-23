@@ -9,7 +9,8 @@ Return the answer sorted by the frequency from highest to lowest. Sort the words
 the same frequency by their lexicographical order.
 
 Notes:
-    - Apparently a priority queue is a good way to solve this
+    - Apparently a priority queue is a good way to solve this. In python, you can use
+        the heapq built-in module to implement it.
 
 """
 from typing import List
