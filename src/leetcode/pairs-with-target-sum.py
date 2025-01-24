@@ -49,7 +49,7 @@ def test_02():
     assert pairs == [(2, 4), (1, 5)]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     input = [1, 2, 3, 4, 5, 6]
     target = 6
     pairs = nested_for_solution(input, target)
