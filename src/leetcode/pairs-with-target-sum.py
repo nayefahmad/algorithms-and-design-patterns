@@ -51,16 +51,14 @@ def two_pointer_solution(input: List, target: int) -> List:
 #     pass
 
 
-@pytest.mark.parametrize(
-    'func', [nested_for_solution, two_pointer_solution]
-)
+@pytest.mark.parametrize("func", [nested_for_solution, two_pointer_solution])
 def tests(func):
     test_cases = [
         # Each tuple has a tuple with 2 inputs, list with output
         (([1, 2, 3, 4, 5, 6], 6), [(1, 5), (2, 4)]),
         (([1, 2, 3, 4, 5, 6], 3), [(1, 2)]),
         (([1, 2, 3, 4, 5, 6], 13), []),
-        (([1, 1, 2, 3, 4, 4, 5, 6], 6), [(1, 5), (2, 4)])
+        (([1, 1, 2, 3, 4, 4, 5, 6], 6), [(1, 5), (2, 4)]),
     ]
     for test_case in test_cases:
         pairs = func(test_case[0][0], test_case[0][1])
