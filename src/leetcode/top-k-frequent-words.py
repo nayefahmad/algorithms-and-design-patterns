@@ -13,13 +13,14 @@ Notes:
         the heapq built-in module to implement it.
 
 """
+from collections import defaultdict
 import heapq
 from typing import List
 
 
 class Solution:
     def topKFrequent(self, words: List[str], k: int) -> List[str]:
-        counts = {}
+        counts = defaultdict(int)
         seen = set()  # lookups for sets are O(1), vs for lists they are O(n)
         for x1 in range(len(words)):
             target = words[x1]
@@ -30,10 +31,7 @@ class Solution:
 
             for x2 in range(len(words)):
                 if words[x2] == target:
-                    if counts.get(words[x2]) is None:
-                        counts[words[x2]] = 1
-                    else:
-                        counts[words[x2]] += 1
+                    counts[words[x2]] += 1
 
         counts_sorted = []
         for item in counts.items():
