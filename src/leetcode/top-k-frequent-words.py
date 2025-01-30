@@ -66,11 +66,23 @@ def test_02():
 
 
 def test_03():
-    words = ["the", "day", "is", 'is', "sunny", "the", "the", "the", "sunny", "is", "is"]
+    words = [
+        "the",
+        "day",
+        "is",
+        "is",
+        "sunny",
+        "the",
+        "the",
+        "the",
+        "sunny",
+        "is",
+        "is",
+    ]
     k = 4
     s = Solution()
     result = s.topKFrequent(words, k)
-    assert result == ["is", 'the', "sunny", "day"]
+    assert result == ["is", "the", "sunny", "day"]
 
 
 if __name__ == "__main__":
