@@ -13,8 +13,8 @@ Notes:
         the heapq built-in module to implement it.
 
 """
-from collections import defaultdict
 import heapq
+from collections import defaultdict
 from typing import List
 
 
