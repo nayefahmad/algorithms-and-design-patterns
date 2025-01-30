@@ -13,29 +13,40 @@ Notes:
         the heapq built-in module to implement it.
 
 """
-import pdb
+import heapq
 from typing import List
 
 
 class Solution:
     def topKFrequent(self, words: List[str], k: int) -> List[str]:
         counts = {}
-        seen = set()
-        for idx_01 in range(len(words)):
-            target = words[idx_01]
+        seen = set()  # lookups for sets are O(1), vs for lists they are O(n)
+        for x1 in range(len(words)):
+            target = words[x1]
             if target not in seen:
                 seen.add(target)
             else:
                 continue
 
-            for idx_02 in range(len(words)):
-                if words[idx_02] == target:
-                    if counts.get(words[idx_02]) is None:
-                        counts[words[idx_02]] = 1
+            for x2 in range(len(words)):
+                if words[x2] == target:
+                    if counts.get(words[x2]) is None:
+                        counts[words[x2]] = 1
                     else:
-                        counts[words[idx_02]] += 1
-        pdb.set_trace()
-        return counts
+                        counts[words[x2]] += 1
+
+        counts_sorted = []
+        for item in counts.items():
+            word = item[0]
+            count = item[1]
+            heapq.heappush(counts_sorted, tuple([count * -1, word]))
+
+        result = []
+        for x3 in range(k):
+            count_negated, word = heapq.heappop(counts_sorted)
+            result.append(word)
+
+        return result
 
 
 def test_01():
@@ -52,6 +63,14 @@ def test_02():
     s = Solution()
     result = s.topKFrequent(words, k)
     assert result == ["the", "is", "sunny", "day"]
+
+
+def test_03():
+    words = ["the", "day", "is", 'is', "sunny", "the", "the", "the", "sunny", "is", "is"]
+    k = 4
+    s = Solution()
+    result = s.topKFrequent(words, k)
+    assert result == ["is", 'the', "sunny", "day"]
 
 
 if __name__ == "__main__":
