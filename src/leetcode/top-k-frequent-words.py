@@ -8,58 +8,55 @@ Given an array of strings words and an integer k, return the k most frequent str
 Return the answer sorted by the frequency from highest to lowest. Sort the words with
 the same frequency by their lexicographical order.
 
-Notes:
-    - Apparently a priority queue is a good way to solve this. In python, you can use
-        the heapq built-in module to implement it.
-
 """
 import heapq
-from collections import defaultdict
+from collections import defaultdict, Counter
 from typing import List
 
 
-class Solution:
-    def topKFrequent(self, words: List[str], k: int) -> List[str]:
-        counts = defaultdict(int)
-        seen = set()  # lookups for sets are O(1), vs for lists they are O(n)
-        for x1 in range(len(words)):
-            target = words[x1]
-            if target not in seen:
-                seen.add(target)
-            else:
-                continue
+def topKFrequent(words: List[str], k: int) -> List[str]:
+    counts = defaultdict(int)
+    for word in words:
+        counts[word] += 1
 
-            for x2 in range(len(words)):
-                if words[x2] == target:
-                    counts[words[x2]] += 1
+    counts_sorted = []
+    for item in counts.items():
+        word = item[0]
+        count = item[1]
+        heapq.heappush(counts_sorted, tuple([count * -1, word]))
 
-        counts_sorted = []
-        for item in counts.items():
-            word = item[0]
-            count = item[1]
-            heapq.heappush(counts_sorted, tuple([count * -1, word]))
+    result = []
+    for x3 in range(k):
+        count_negated, word = heapq.heappop(counts_sorted)
+        result.append(word)
 
-        result = []
-        for x3 in range(k):
-            count_negated, word = heapq.heappop(counts_sorted)
-            result.append(word)
+    return result
 
-        return result
+
+def counter_solution(words: List[str], k: int) -> List[str]:
+    # todo: test this
+
+    # Step 1: Count frequencies in O(n)
+    counts = Counter(words)
+
+    # Step 2: Sort words first by frequency (-count), then by lexicographical order
+    sorted_words = sorted(counts.keys(), key=lambda word: (-counts[word], word))
+
+    # Step 3: Return the top k words
+    return sorted_words[:k]
 
 
 def test_01():
     words = ["i", "love", "leetcode", "i", "love", "coding"]
     k = 2
-    s = Solution()
-    result = s.topKFrequent(words, k)
+    result = topKFrequent(words, k)
     assert result == ["i", "love"]
 
 
 def test_02():
     words = ["the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"]
     k = 4
-    s = Solution()
-    result = s.topKFrequent(words, k)
+    result = topKFrequent(words, k)
     assert result == ["the", "is", "sunny", "day"]
 
 
@@ -78,8 +75,7 @@ def test_03():
         "is",
     ]
     k = 4
-    s = Solution()
-    result = s.topKFrequent(words, k)
+    result = topKFrequent(words, k)
     assert result == ["is", "the", "sunny", "day"]
 
 
