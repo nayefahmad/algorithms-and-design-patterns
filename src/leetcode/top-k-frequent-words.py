@@ -10,7 +10,7 @@ the same frequency by their lexicographical order.
 
 """
 import heapq
-from collections import defaultdict, Counter
+from collections import Counter, defaultdict
 from typing import List
 
 
