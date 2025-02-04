@@ -37,14 +37,10 @@ def topKFrequent(words: List[str], k: int) -> List[str]:
 
 def counter_solution(words: List[str], k: int) -> List[str]:
     # todo: test this
-
-    # Step 1: Count frequencies in O(n)
     counts = Counter(words)
 
-    # Step 2: Sort words first by frequency (-count), then by lexicographical order
+    # Sort words first by frequency (-count), then by lexicographical order
     sorted_words = sorted(counts.keys(), key=lambda word: (-counts[word], word))
-
-    # Step 3: Return the top k words
     return sorted_words[:k]
 
 
