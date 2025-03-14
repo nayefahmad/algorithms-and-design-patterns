@@ -3,7 +3,6 @@ Demonstrating speedup in sampling from a Markov matrix. Instead of using a dataf
 we use a dictionary (O(1) lookup), and we use np.searchsorted (O(nlogn) lookup).
 """
 
-
 import time
 
 import numpy as np
@@ -23,7 +22,7 @@ df = pd.DataFrame(
     {"state A": state_A, "state B": state_B, "transition_prob": transition_prob}
 )
 
-# local normalization so sum is 1.0 for given starting point
+# local normalizatiotomn so sum is 1.0 for given starting point
 df["transition_prob"] = df.groupby("state A")["transition_prob"].transform(
     lambda x: x / x.sum()
 )
