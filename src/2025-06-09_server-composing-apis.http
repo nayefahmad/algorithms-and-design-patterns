@@ -1,0 +1,12 @@
+GET http://127.0.0.1:8001/
+Accept: application/json
+
+###
+
+GET 127.0.0.1:8001/op01?x1=5
+Accept: application/json
+
+###
+
+GET 127.0.0.1:8001/op02?x1=5
+Accept: application/json
