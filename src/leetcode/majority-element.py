@@ -17,8 +17,10 @@ class Solution:
         elements = set(nums)
         counts = {k: 0 for k in elements}
 
-        seen_elements = {}
+        # If allowed to user collections.Counter, we could do:
+        # counts = Counter(nums)
 
+        seen_elements = {}
         for element in elements:
             if element in seen_elements:
                 continue
@@ -26,7 +28,7 @@ class Solution:
                 if element == num:
                     counts[element] += 1
 
-        threshold = math.floor(len(nums)/2)
+        threshold = math.floor(len(nums)/2)  # todo: not used
 
         counts_values = list(counts.values())
         max_val = max(counts_values)
