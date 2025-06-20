@@ -63,7 +63,7 @@ def hash_table_solution(input: List, target: int) -> List:
     """
     seen = set()
     pairs = []
-    for num in input:  # O(n) because we have to look at every element
+    for num in input:  # O(n) because we look at every element only once
         complement = target - num
         if complement in seen:  # O(1) lookup
             pairs.append(tuple(sorted([num, complement])))

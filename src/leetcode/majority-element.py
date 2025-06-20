@@ -3,7 +3,7 @@
 
 Reference: leetcode problem 169
 
-Given array nums of size n, return the majority element.
+Given array `nums` of size n, return the majority element.
 
 The majority element is the element that appears more than ⌊n / 2⌋ times. You may
 assume that the majority element always exists in the array.
@@ -15,15 +15,12 @@ from typing import List
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
         elements = set(nums)
-        counts = {k: 0 for k in elements}
+        counts = {k: 0 for k in elements}  # could do defaultdict(int) as well
 
         # If allowed to user collections.Counter, we could do:
         # counts = Counter(nums)
 
-        seen_elements = {}
         for element in elements:
-            if element in seen_elements:
-                continue
             for num in nums:
                 if element == num:
                     counts[element] += 1
