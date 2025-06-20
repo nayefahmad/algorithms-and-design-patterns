@@ -45,6 +45,12 @@ class Solution:
         one moves faster than the other (as in this solution), or one moves from a
         different direction.
 
+        - `number_removed` is the slow pointer. It only updates when a certain
+          condition is met. The condition is that nums[idx1] != val, which means that
+          nums[idx1] should be retained in the output, and assigned to the position
+          `nums[number_removed]`
+        - `idx1` is the fast pointer that passes through the input once
+
         The approach is particularly useful for achieving O(n) runtime performance
         where a nested for loop would otherwise be used.
         """
@@ -52,8 +58,8 @@ class Solution:
         for idx1 in range(len(nums)):
             no_remove = True if nums[idx1] != val else False
             if no_remove:
-                # note that k and idx1 will start differing once the if condition
-                # evaluates to False.
+                # note that number_removed and idx1 will start differing once the
+                # if condition evaluates to False.
                 nums[number_removed] = nums[idx1]
                 number_removed += 1
         nums[number_removed:] = []
