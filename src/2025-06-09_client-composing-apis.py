@@ -1,6 +1,13 @@
 """
+# Simple example of composing API endpoints.
 
-See ./2025-06-09_server-composing-apis.py
+Operation 2 needs to first run Operation 1, then do more stuff. However, we don't
+need to duplicate the code of op01 within the definition of the op02 endpoint - we
+can just call the op01 endpoint within it.
+
+Same with op03 - it first runs op01, then op02, then does more stuff.
+
+See ./2025-06-09_server-composing-apis.py for the server setup 
 """
 
 import time
